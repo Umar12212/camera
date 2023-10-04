@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Воспроизведение камеры</title>
+  <style>
+    #video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #video {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <video id="video" autoplay></video>
+  </div>
+
+  <script>
+    // Получаем доступ к видеопотоку с камеры
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        var videoElement = document.getElementById('video');
+        videoElement.srcObject = stream;
+      })
+      .catch(function(error) {
+        console.error('Ошибка при получении доступа к камере: ', error);
+      });
+  </script>
+</body>
+</html>
